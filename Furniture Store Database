@@ -1,0 +1,25 @@
+CREATE TABLE furniture (id INTEGER PRIMARY KEY, item TEXT, price INTEGER, quantity_stocked INTEGER, sold INTEGER);
+
+INSERT INTO furniture VALUES(1, "Bed Frame", 150, 10, 5);
+INSERT INTO furniture VALUES (2, "Mattress", 200, 15, 8);
+INSERT INTO furniture VALUES (3, "Dresser", 175, 8, 5);
+INSERT INTO furniture VALUES (4, "Nightstand White", 90, 6, 2);
+INSERT INTO furniture VALUES (5, "Nightstand Brown", 90, 6, 0);
+INSERT INTO furniture VALUES (6, "Desk White", 175, 4, 1);
+INSERT INTO furniture VALUES (7, "Desk Black", 190, 5, 1);
+INSERT INTO furniture VALUES (8, "Desk Wood", 200, 3, 2);
+INSERT INTO furniture VALUES (9, "Side Table", 70, 7, 5);
+INSERT INTO furniture VALUES (10, "Coffee Table Rectangle", 120, 8, 6);
+INSERT INTO furniture VALUES (11, "Coffee Table Oval", 110, 6, 5);
+INSERT INTO furniture VALUES (12, "Coffee Table Round", 90, 6, 1);
+INSERT INTO furniture VALUES (13, "Floor Lamp Brass", 80, 4, 2);
+INSERT INTO furniture VALUES (14, "Floor Lamp White", 70, 6, 5);
+INSERT INTO furniture VALUES (15, "Floor Lamp Black", 65, 6, 3);
+
+
+--Which item has more than 7 sold?
+SELECT item FROM furniture WHERE sold > 7; 
+
+
+--List the items by price, in ascending order.
+SELECT item FROM furniture ORDER BY price;
