@@ -1,0 +1,52 @@
+#In this SQL code, I'm querying a database that's holding Nexflix data to answer questions about the data. 
+
+SELECT count(*)
+FROM "CharlotteChaze/BreakIntoTech"."netflix_people";
+
+SELECT count(*)
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+
+SELECT *
+FROM "CharlotteChaze/BreakIntoTech"."netflix_people"
+    LEFT JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+    ON "CharlotteChaze/BreakIntoTech"."netflix_people"."show_id" = "CharlotteChaze/BreakIntoTech"."netflix_titles_info"."show_id";
+
+--How many movie titles are there in the database? (movies only, not tv shows)
+
+SELECT count(*)
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type = 'Movie';
+
+--Answer: 6131 movies
+
+--When was the most recent batch of tv shows and/or movies added to the database?
+
+SELECT max(date(date_added))
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+
+--Answer: 09/25/2021
+
+-- List all the movies and tv shows in alphabetical order.
+
+SELECT title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+    ORDER BY title asc;
+
+-- Who was the Director for the movie Bright Star?
+SELECT director
+FROM "CharlotteChaze/BreakIntoTech"."netflix_people" people
+    LEFT JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
+    ON people.show_id = titles.show_id
+    WHERE titles.title = 'Bright Star';
+
+--Answer: Jane Campion
+
+-- What is the oldest movie in the database and what year was it made?
+
+SELECT release_year, title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+    WHERE type = 'Movie'
+    ORDER BY release_year asc
+        LIMIT 1;
+
+--Answer: Prelude to War
