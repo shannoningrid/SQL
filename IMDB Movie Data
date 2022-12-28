@@ -1,0 +1,61 @@
+## In this SQL, I queried a database containing IMDB movie data to answer the following questions: 
+
+#1. Select all fields from movies.
+
+SELECT *
+FROM movies;
+
+#2.  Which movie brought in the highest amount of revenue?
+
+ SELECT revenue, title
+FROM movies
+ORDER BY revenue desc
+LIMIT 1;
+
+
+#3.  Which movie had the highest profit ratio (revenue/budget)?
+
+SELECT title, (revenue/budget) as profit_ratio
+FROM movies;
+
+#4. Which movies have a title that differs from the original title?
+
+SELECT title, original_title
+FROM movies
+WHERE title <> original_title;
+
+#5. How many movies have a title that differs from the original title?
+
+SELECT COUNT(title)
+FROM movies
+WHERE title <> original_title;
+
+#6. What is the director ID for the movie Avatar?
+
+SELECT title, director_id
+FROM movies
+WHERE title = 'Avatar';
+
+#7.  What other movies were directed by the same director as Avatar?
+
+SELECT title, director_id
+FROM movies
+WHERE director_id = '4762';
+
+
+#8. How many different director IDs are in the table?
+
+SELECT COUNT(DISTINCT director_id)
+FROM movies;
+
+#9. Which movies had the top 10 highest budgets?
+
+SELECT title, budget
+FROM movies
+ORDER BY budget desc
+LIMIT 10;
+
+#10. What was the average budget from a movie?
+
+SELECT AVG(budget)
+FROM movies;
