@@ -1,0 +1,38 @@
+## In this SQL, I queried a database containing State Name data and National Name data.  I began by joining the two tables to create a table, 'most_popular' that contained names from all years after 2000 with a national count of greater than or equal to 50,000.  Subsequent queries were made using the 'most_popular' table. ##
+
+CREATE TABLE most_popular AS
+SELECT StateNames.Name, StateNames.State, StateNames.Count as StateCount, NationalNames.Count as NationalCount, StateNames.Year FROM StateNames
+INNER JOIN NationalNames
+ON NationalNames.Id = StateNames.Id
+WHERE StateNames.Year>2000 AND NationalCount >= 50000
+ORDER BY NationalCount desc;
+
+#1. Select all fields from the table, 'most_popular.'
+
+SELECT * FROM most_popular;
+
+#2. What were the ten most popular names nationally since 2000?
+
+SELECT Name, NationalCount FROM most_popular
+	ORDER BY NationalCount desc
+		LIMIT 10;
+		
+#3. What name(s) from the state of California had a NationalCount of greater than or equal to 50,000 in the year 2010?
+
+SELECT Name, State, Year FROM most_popular
+	WHERE State = 'CA' AND Year = '2010';
+	
+#4. Sort the names for the most_popular table alphabetically.
+
+SELECT * FROM most_popular
+	ORDER BY Name asc;
+	
+#5.  Select all names from the most_popular table that end in the letter 'A'.  
+
+SELECT Name FROM most_popular
+	WHERE Name LIKE '%a';
+
+#6.  How many names from the most_popular table start with the letter 'J'?
+
+SELECT COUNT(Name) FROM most_popular
+	WHERE Name LIKE 'J%';
